@@ -26,7 +26,9 @@ enum synaptics_funcarea_kind {
 	SYN_FUNCAREA_INSENSIBLE,
 	SYN_FUNCAREA_POINTER,
 	SYN_FUNCAREA_BUTTON,
+#ifdef CONFIG_TOUCHSCREEN_CLEARPAD_WAKEUP
 	SYN_FUNCAREA_WAKEUP,
+#endif
 	SYN_FUNCAREA_END,
 };
 
@@ -79,4 +81,9 @@ struct clearpad_data {
 	struct clearpad_platform_data *pdata;
 	struct clearpad_bus_data *bdata;
 };
+
+#ifdef CONFIG_TOUCHSCREEN_PROXIMITY_INTERACTION
+extern void synaptics_clearpad_proximity_notify(bool proximity_state);
+extern bool synaptics_clearpad_proximity_power(void);
+#endif
 #endif
